@@ -1,6 +1,7 @@
 /* src\Cloud.tsx: */
 
 import React from 'react';
+import './App.css';
 
 interface WordData {
   word: string;
@@ -19,7 +20,7 @@ interface WordPosition {
 }
 
 const WordCloud: React.FC<Props> = ({ words }) => {
-  const containerSize = 700;                   
+  const containerSize = 650;                   
   const radius = containerSize / 2;           
   const positions: WordPosition[] = [];
 
@@ -35,7 +36,7 @@ const WordCloud: React.FC<Props> = ({ words }) => {
     let attempts = 0;
     do {
       angle = Math.random() * 2 * Math.PI;      // Random angle
-      distance = Math.random() * radius;        // Random distance from the center
+      distance = Math.random() * radius;        // Random distance from center
       x = radius + distance * Math.cos(angle);  // X positon
       y = radius + distance * Math.sin(angle);  // Y position
       newPos = { ...wordData, x, y };
@@ -54,7 +55,7 @@ const WordCloud: React.FC<Props> = ({ words }) => {
           <span key={data.word} style={{
             position: 'absolute',
             fontSize: `${data.size}px`,
-            color: getColor(data.size),
+            color: getColor(data.size, words.length),
             left: `${pos.x}px`,
             top: `${pos.y}px`,
             transform: 'translate(-50%, -50%)'
@@ -67,11 +68,34 @@ const WordCloud: React.FC<Props> = ({ words }) => {
   );
 };
 
-
-
 export default WordCloud;
 
-function getColor(size: number) {
-  const hue = 360 - (size - 10) * 270 / 40; // 360 (violet) to 90 (red)
+
+function getColor(index: number, totalWords: number) {
+  const ratio = index / totalWords;
+
+  const colorStops = [
+    { ratio: 0.1, hue: 0 },  
+    { ratio: 0.2, hue: 218 },
+    { ratio: 0.4, hue: 30 }, 
+    { ratio: 0.6, hue: 0 },
+    { ratio: 0.8, hue: 220 },
+    { ratio: 1, hue: 270 }  
+  ];
+
+  let start = colorStops[0];
+  let end = colorStops[1];
+
+  for (let i = 1; i < colorStops.length; i++) {
+    if (ratio <= colorStops[i].ratio) {
+      end = colorStops[i];
+      break;
+    }
+    start = colorStops[i];
+  }
+
+  const hueRatio = (ratio - start.ratio) / (end.ratio - start.ratio);
+  const hue = start.hue + hueRatio * (end.hue - start.hue);
+
   return `hsl(${hue}, 100%, 50%)`;
 }

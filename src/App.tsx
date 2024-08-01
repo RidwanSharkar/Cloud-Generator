@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import WordCloud from './Cloud';
+import './App.css';
 
 const App: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
@@ -12,13 +13,14 @@ const App: React.FC = () => {
   };
 
   const generateWordCloud = () => {
-    const stopWords = new Set(["the", "and", "a", "it", "is", "of", "on", "in", "to", "as"]);
+    const stopWords = new Set(["the", "and", "a", "it", "is", "of", "on", "in", "to", "as", "for", "than", "they", "which", "not", "etc", "eg", "ie", "are", "by", "from", "to", "were", "has", "with"]);
     const wordCounts: Record<string, number> = {};
     const words = inputText.split(/\s+/);
     
     words.forEach(word => {
       const cleanWord = word.toLowerCase().replace(/[^\w]/g, '');
-      if (cleanWord && !stopWords.has(cleanWord)) {
+      if (cleanWord && !stopWords.has(cleanWord) && !/^\d+$/.test(cleanWord))  // REGEX FOR ISOLATED DIGITS
+      {
         wordCounts[cleanWord] = (wordCounts[cleanWord] || 0) + 1;
       }
     });
@@ -31,7 +33,7 @@ const App: React.FC = () => {
     const maxFreq = sortedWords[0].count;
     const wordArray = sortedWords.map(({ word, count }) => ({
       word: word,
-      size: 10 + (count / maxFreq) * 40, // Base: 10px | Max: 50px
+      size: 9 + (count / maxFreq) * 40, // Base: 10px | Max: 50px
     }));
 
     setWordData(wordArray);
@@ -39,21 +41,27 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+
       <h1>Word Cloud Generator</h1>
-      <textarea
-        value={inputText}
-        onChange={handleTextChange}
-        rows={10}
-        placeholder="Enter text here..."
-        style={{
-          width: '100%',
-          marginBottom: '10px'
-        }}
-      />
-      <button onClick={generateWordCloud}>Generate</button>
-      <div style={{ width: '100%', marginTop: '20px' }}>
+
+      <div className="input-container">
+        <textarea
+          value={inputText}
+          onChange={handleTextChange}
+          rows={10}
+          placeholder="Enter text here..."
+          style={{
+            width: '80%',
+            marginBottom: '10px'
+          }}
+        />
+        <button onClick={generateWordCloud}>Generate</button>
+      </div>
+
+      <div className="word-cloud-container">
         <WordCloud words={wordData} />
       </div>
+
     </div>
   );
 };

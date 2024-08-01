@@ -1,5 +1,13 @@
 /* src/App.css */
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1c1c1c; /* Dark Navy Background */
+  color: white; /* Default text color to white */
+  font-family: Arial, sans-serif; /* Add a default font for consistency */
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,7 +20,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #252525;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,56 +47,73 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+  padding: 15px;
   width: 100%;
+  height: 100vh;
   max-width: 700px;
+  margin: 0 auto;
+  background-color: #252525; 
+  color: white; 
+}
+
+
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   margin: 0 auto;
 }
 
 h1 {
   text-align: center;
-}
-
-.input-container {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-textarea {
-  width: 80%;
-  margin-bottom: 10px;
-  resize: vertical;
-}
-
-button {
-  margin-top: 10px;
+  color: white;
 }
 
 .word-cloud-container {
-  width: 100%;
   position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  align-items: flex-end;
 }
 
 .word-cloud {
-  position: relative;
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  overflow: hidden;
-  background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: visible;
+  background: #252525;
+  position: relative; 
 }
 
-.word-cloud span {
-  position: absolute;
-  transform: translate(-50%, -50%);
+.text-area {
+  width: 80%; 
+  margin-bottom: 10px;
+  background-color: #252525; 
+  color: white; 
+  border: 1px solid #001f3f; 
+  padding: 10px;
+}
+.text-area::placeholder {
+  color: #001f3f; 
+}
+
+
+button {
+  cursor: pointer;
+  background-color: #001f3f; 
+  color: white; 
+  border: 1px solid white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin-top: 0px;
+}
+
+button:hover {
+  background-color: white;
+  color: #001f3f; 
 }
