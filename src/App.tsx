@@ -12,7 +12,7 @@ const App: React.FC = () => {
   };
 
   const generateWordCloud = () => {
-    const stopWords = new Set(["the", "and", "a", "it", "is", "of", "on", "in", "to", "as"]); // Extend this list as needed
+    const stopWords = new Set(["the", "and", "a", "it", "is", "of", "on", "in", "to", "as"]);
     const wordCounts: Record<string, number> = {};
     const words = inputText.split(/\s+/);
     
@@ -26,26 +26,19 @@ const App: React.FC = () => {
     const sortedWords = Object.keys(wordCounts)
       .map(word => ({ word, count: wordCounts[word] }))
       .sort((a, b) => b.count - a.count)
-      .slice(0, 100); // Limit to the top 100 words
+      .slice(0, 100); // Max Words
 
     const maxFreq = sortedWords[0].count;
     const wordArray = sortedWords.map(({ word, count }) => ({
       word: word,
-      size: 10 + (count / maxFreq) * 40, // Base size of 10px, scales up to 50px
+      size: 10 + (count / maxFreq) * 40, // Base: 10px | Max: 50px
     }));
 
     setWordData(wordArray);
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: '20px',
-      maxWidth: '700px',
-      margin: '0 auto'
-    }}>
+    <div className="App">
       <h1>Word Cloud Generator</h1>
       <textarea
         value={inputText}

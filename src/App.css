@@ -1,4 +1,4 @@
-/* src\App.css */
+/* src/App.css */
 
 .App-logo {
   height: 40vmin;
@@ -50,7 +50,7 @@ h1 {
 }
 
 .input-container {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@ h1 {
 }
 
 textarea {
-  width: 100%;
+  width: 80%;
   margin-bottom: 10px;
   resize: vertical;
 }
@@ -69,15 +69,26 @@ button {
 
 .word-cloud-container {
   width: 100%;
-  position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .word-cloud {
-  position: center;
+  position: relative;
   width: 700px;
   height: 700px;
-  margin: auto;
   border-radius: 50%;
   overflow: hidden;
   background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-cloud span {
+  position: absolute;
+  transform: translate(-50%, -50%);
 }

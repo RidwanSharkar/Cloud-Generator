@@ -19,14 +19,14 @@ interface WordPosition {
 }
 
 const WordCloud: React.FC<Props> = ({ words }) => {
-  const containerSize = 700; // Width and Height of the word cloud container
-  const radius = containerSize / 2; // Maximum radius for word placement
+  const containerSize = 700;                   
+  const radius = containerSize / 2;           
   const positions: WordPosition[] = [];
 
   const doesOverlap = (newPos: WordPosition) => {
     return positions.some(pos => {
       const distance = Math.sqrt(Math.pow(pos.x - newPos.x, 2) + Math.pow(pos.y - newPos.y, 2));
-      return distance < (pos.size + newPos.size) / 2; // Simple overlap check
+      return distance < (pos.size + newPos.size) / 2;
     });
   };
 
@@ -34,13 +34,13 @@ const WordCloud: React.FC<Props> = ({ words }) => {
     let angle, distance, x, y, newPos;
     let attempts = 0;
     do {
-      angle = Math.random() * 2 * Math.PI; // Random angle
-      distance = Math.random() * radius; // Random distance from the center
-      x = radius + distance * Math.cos(angle); // Calculate x position
-      y = radius + distance * Math.sin(angle); // Calculate y position
+      angle = Math.random() * 2 * Math.PI;      // Random angle
+      distance = Math.random() * radius;        // Random distance from the center
+      x = radius + distance * Math.cos(angle);  // X positon
+      y = radius + distance * Math.sin(angle);  // Y position
       newPos = { ...wordData, x, y };
       attempts++;
-    } while (doesOverlap(newPos) && attempts < 100); // Attempt placement 100 times
+    } while (doesOverlap(newPos) && attempts < 100); // Max Words
     if (attempts < 100) positions.push(newPos);
     return newPos;
 };
@@ -57,7 +57,7 @@ const WordCloud: React.FC<Props> = ({ words }) => {
             color: getColor(data.size),
             left: `${pos.x}px`,
             top: `${pos.y}px`,
-            transform: 'translate(-50%, -50%)' // Center the words
+            transform: 'translate(-50%, -50%)'
           }}>
             {data.word}
           </span>
@@ -68,9 +68,10 @@ const WordCloud: React.FC<Props> = ({ words }) => {
 };
 
 
+
 export default WordCloud;
 
 function getColor(size: number) {
-  const hue = 360 - (size - 10) * 270 / 40; // Adjust hue from 360 (violet) to 90 (red)
+  const hue = 360 - (size - 10) * 270 / 40; // 360 (violet) to 90 (red)
   return `hsl(${hue}, 100%, 50%)`;
 }
