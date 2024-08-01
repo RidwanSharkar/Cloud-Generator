@@ -13,7 +13,9 @@ const App: React.FC = () => {
   };
 
   const generateWordCloud = () => {
-    const stopWords = new Set(["the", "and", "a", "it", "is", "of", "on", "in", "to", "as", "for", "than", "they", "which", "not", "etc", "eg", "ie", "are", "by", "from", "to", "were", "has", "with"]);
+    const stopWords = new Set(["the", "an", "into", "through", "over", "be", "also", "this", "how", "where", "then", "when", "and", "a", "it", "is", "of", "on", "in", "to", "as", "for", "than", "they", 
+    "which", "not", "etc", "eg", "ie", "are", "by", "from", "to", "were", "has", "with", "can", "we", "but", "our",
+    "like", "many", "such", "that", "more", "used", "or", "its", "there", "so", "them", "while", "use", "uses"]);
     const wordCounts: Record<string, number> = {};
     const words = inputText.split(/\s+/);
     
@@ -33,7 +35,7 @@ const App: React.FC = () => {
     const maxFreq = sortedWords[0].count;
     const wordArray = sortedWords.map(({ word, count }) => ({
       word: word,
-      size: 9 + (count / maxFreq) * 40, // Base: 10px | Max: 50px
+      size: 9 + (count / maxFreq) * 50, // Base: 10px | Max: 50px
     }));
 
     setWordData(wordArray);
@@ -50,10 +52,7 @@ const App: React.FC = () => {
           onChange={handleTextChange}
           rows={10}
           placeholder="Enter text here..."
-          style={{
-            width: '80%',
-            marginBottom: '10px'
-          }}
+          className="text-area"
         />
         <button onClick={generateWordCloud}>Generate</button>
       </div>

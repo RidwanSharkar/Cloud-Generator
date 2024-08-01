@@ -3,9 +3,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #1c1c1c; /* Dark Navy Background */
-  color: white; /* Default text color to white */
-  font-family: Arial, sans-serif; /* Add a default font for consistency */
+  background-color: #1c1c1c; 
+  color: white; 
+  font-family: Arial, sans-serif; 
 }
 
 .App-logo {
@@ -53,7 +53,7 @@ body {
   height: 100vh;
   max-width: 700px;
   margin: 0 auto;
-  background-color: #252525; 
+  background-color: #1c1c1c; 
   color: white; 
 }
 
@@ -69,7 +69,7 @@ body {
 
 h1 {
   text-align: center;
-  color: white;
+  color: #3ab0e3;
 }
 
 .word-cloud-container {
@@ -78,7 +78,8 @@ h1 {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  padding-top: 20px;
 }
 
 .word-cloud {
@@ -86,7 +87,7 @@ h1 {
   height: 700px;
   border-radius: 50%;
   overflow: visible;
-  background: #252525;
+  background: #1c1c1c;
   position: relative; 
 }
 
@@ -94,26 +95,48 @@ h1 {
   width: 80%; 
   margin-bottom: 10px;
   background-color: #252525; 
-  color: white; 
-  border: 1px solid #001f3f; 
+  color: rgb(194, 194, 194); 
+  border: 14px solid #4c4c4c; 
+  border-radius: 35px;
   padding: 10px;
-}
-.text-area::placeholder {
-  color: #001f3f; 
 }
 
 
 button {
   cursor: pointer;
-  background-color: #001f3f; 
+  background-color: #36a4d2; 
   color: white; 
-  border: 1px solid white;
-  padding: 10px 20px;
+  border: 0px solid #36a4d2;
+  padding: 10px 16px;
   border-radius: 25px;
-  margin-top: 0px;
+  margin-top: 5px;
 }
 
 button:hover {
-  background-color: white;
-  color: #001f3f; 
+  background-color: #cf6d2c;
+  color: white; 
+}
+
+/*==========================================*/
+
+/* Custom scrollbar styles for Webkit browsers */
+.text-area::-webkit-scrollbar {
+  width: 20px; /* Width of the entire scrollbar */
+}
+
+.text-area::-webkit-scrollbar-track {
+  background: #252525; /* Dark Grey background for the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.text-area::-webkit-scrollbar-thumb {
+  background-color: #252525; /* Dark Navy color for the scrollbar thumb */
+  border-radius: 20px; /* Rounded corners for the thumb */
+  border: 8px solid #252525; /* Adds padding around the thumb */
+}
+
+/* Custom scrollbar styles for Firefox */
+.text-area {
+  scrollbar-width: thin; /* Make the scrollbar thinner */
+  scrollbar-color: #4c4c4c #252525; /* Thumb color and track color */
 }

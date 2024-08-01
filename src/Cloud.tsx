@@ -27,7 +27,7 @@ const WordCloud: React.FC<Props> = ({ words }) => {
   const doesOverlap = (newPos: WordPosition) => {
     return positions.some(pos => {
       const distance = Math.sqrt(Math.pow(pos.x - newPos.x, 2) + Math.pow(pos.y - newPos.y, 2));
-      return distance < (pos.size + newPos.size) / 2;
+      return distance < (pos.size + newPos.size) / 1.33;   //overlap threshold
     });
   };
 
