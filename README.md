@@ -4,7 +4,7 @@ ________________________________________________________________________________
 
 **OVERVIEW:**
 
-• Cloud Generator allows users to input text, process it, and then display a resulting cloud of keywords - scaled and color coded by their prominence within the text. 
+• Cloud Generator allows users to input copied text, process it, and then display a resulting cloud of keywords - scaled and color coded by their prominence within the text. 
 
 ![WCG](https://github.com/user-attachments/assets/a754b438-2c10-497d-8753-a1b9973616bc)
 
